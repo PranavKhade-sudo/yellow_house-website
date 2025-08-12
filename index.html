@@ -1,426 +1,81 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Yellow House — The Tiranga & Reformers</title>
-
-  <!-- SEO / Social -->
-  <meta name="description" content="Yellow House — an educational page about the Indian Tiranga (tricolour), its history and the social reformers who shaped modern India." />
-  <meta property="og:title" content="Yellow House — The Tiranga & Reformers" />
-  <meta property="og:description" content="History, symbolism and timeline of the Tiranga. Biographies and images of India's leading social reformers." />
-  <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" />
-  <meta property="og:url" content="https://pranavkhade-sudo.github.io/yellow-house-website-1/" />
-
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --saffron:#FF9933;
-      --green:#138808;
-      --navy:#0B3D91;
-      --muted:#6b7280;
-      --maxw:1100px;
-      --radius:12px;
-      --glass: rgba(255,255,255,0.7);
-      --card-shadow: 0 6px 22px rgba(16,24,40,0.08);
-    }
-    *{box-sizing:border-box}
-    body{
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      margin:0; color:#111; background:linear-gradient(180deg,#fbfbfb 0%, #f3f6f8 100%);
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      line-height:1.55;
-    }
-
-    /* Header / Nav */
-    header{
-      background: linear-gradient(90deg,var(--saffron),#fff,var(--green));
-      padding: 22px 20px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
-    }
-    .topbar{
-      max-width:var(--maxw); margin:0 auto; display:flex; gap:16px; align-items:center; justify-content:space-between;
-    }
-    .brand{display:flex;gap:14px;align-items:center}
-    .brand img{width:64px;height:40px;object-fit:contain;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,0.08)}
-    .brand h1{margin:0;font-size:20px;letter-spacing:0.2px}
-    nav{display:flex; gap:14px; align-items:center}
-    nav a{color:#032; text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px}
-    nav a:hover{background:rgba(0,0,0,0.06)}
-
-    /* Hero */
-    .hero{
-      max-width:var(--maxw); margin:26px auto 10px; padding:18px; display:grid; grid-template-columns: 1fr 420px; gap:24px; align-items:center;
-    }
-    .hero-card{background:rgba(255,255,255,0.9); padding:22px; border-radius:var(--radius); box-shadow:var(--card-shadow)}
-    .hero-card h2{margin:0 0 8px; font-size:26px}
-    .hero-card p{color:var(--muted); margin:0 0 12px}
-    .hero-flag{display:flex; justify-content:center}
-    .hero-flag img{width:100%; max-width:380px; border-radius:10px; box-shadow:0 10px 30px rgba(0,0,0,0.08)}
-
-    /* Sections */
-    section.container{max-width:var(--maxw); margin:18px auto; padding:0 20px}
-    .grid{display:grid; gap:18px}
-    .two{grid-template-columns: 1fr 360px}
-    h2.section-title{font-size:20px; margin:0 0 10px; display:flex; align-items:center; gap:10px}
-    .lead{color:var(--muted); margin-bottom:8px}
-
-    /* History box style */
-    .history {
-      background: white; padding:18px; border-radius:12px; box-shadow:var(--card-shadow);
-    }
-    .timeline{
-      margin-top:12px; display:flex; flex-direction:column; gap:12px;
-    }
-    .event{
-      display:flex; gap:12px; align-items:flex-start;
-    }
-    .dot{width:12px;height:12px;border-radius:50%; background:var(--navy); margin-top:6px}
-    .event .meta{font-weight:700; color:#0f1724; margin-bottom:6px}
-    .muted{color:var(--muted); font-size:14px}
-
-    /* Reformers */
-    .reformers-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-      gap:16px; margin-top:14px;
-    }
-    .card{
-      background:white; padding:14px; border-radius:12px; box-shadow:var(--card-shadow); overflow:hidden;
-    }
-    .card img{width:100%;height:180px;object-fit:cover;border-radius:8px;margin-bottom:10px}
-    .card h3{margin:0 0 6px}
-    .card p{margin:0;color:var(--muted); font-size:14px}
-
-    /* Gallery */
-    .gallery{display:grid; grid-template-columns:repeat(auto-fit, minmax(140px,1fr)); gap:10px}
-    .thumb{position:relative; overflow:hidden; border-radius:8px; cursor:pointer}
-    .thumb img{width:100%; height:140px; object-fit:cover; display:block; transition:transform .35s ease}
-    .thumb:hover img{transform:scale(1.06)}
-    .caption{position:absolute; left:8px; bottom:8px; background:rgba(0,0,0,0.45); color:white; padding:6px 8px; border-radius:6px; font-size:13px}
-
-    /* Modal */
-    .modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(0,0,0,0.6); z-index:1200}
-    .modal.show{display:flex}
-    .modal-content{max-width:900px; width:95%; background:white; border-radius:12px; overflow:hidden}
-    .modal-content img{width:100%; height:auto; display:block}
-    .modal-close{position:absolute; right:14px; top:12px; background:white; border-radius:50%; width:36px;height:36px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 6px 20px rgba(0,0,0,0.12)}
-    .modal-body{padding:14px}
-
-    /* Footer */
-    footer{margin-top:30px; background:#0b1220; color:#fff; padding:18px 20px; text-align:center}
-    footer p{margin:0; font-size:14px}
-
-    /* Responsive */
-    @media(max-width:960px){
-      .hero{grid-template-columns:1fr}
-      nav{display:none}
-      .topbar{justify-content:space-between}
-    }
-
-    /* small animations */
-    .fade-up{opacity:0; transform:translateY(8px); transition:all .55s ease}
-    .fade-up.in{opacity:1; transform:none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Yellow House</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Header with brand -->
-  <header>
-    <div class="topbar">
-      <div class="brand" aria-hidden="false">
-        <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Tiranga thumbnail">
-        <div>
-          <h1>Yellow House</h1>
-          <div style="font-size:13px;color:#062C20">Tiranga • History • Reformers</div>
+    <header class="hero">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1>Welcome to Yellow House</h1>
+            <p>Celebrating the Spirit of the Tiranga & Honoring Social Reformers of India</p>
         </div>
-      </div>
+    </header>
 
-      <nav aria-label="Primary">
-        <a href="#history">History</a>
-        <a href="#about">About</a>
-        <a href="#reformers">Reformers</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <main class="hero" role="main">
-    <div class="hero-card fade-up" id="hero-left">
-      <h2>The Tiranga — India’s National Flag</h2>
-      <p class="lead">A concise guide to the flag’s origins, evolution, symbolism and how it became the emblem of modern India.</p>
-      <p class="muted">Designed by <strong>Pingali Venkayya</strong>. Officially adopted by the Constituent Assembly on <strong>22 July 1947</strong> (pre-independence). Below you can read the full journey of how the Tiranga evolved and what each part means.</p>
-      <p style="margin-top:14px"><strong>Quick facts</strong></p>
-      <ul style="margin:8px 0 0 18px; color:var(--muted)">
-        <li>Adopted: 22 July 1947</li>
-        <li>Designer: Pingali Venkayya</li>
-        <li>Proportions: 3:2</li>
-        <li>Central motif: Ashoka Chakra (24 spokes)</li>
-      </ul>
-    </div>
-
-    <div class="hero-flag fade-up" id="hero-right">
-      <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Indian national flag">
-    </div>
-  </main>
-
-  <!-- HISTORY -->
-  <section id="history" class="container">
-    <div class="history fade-up" id="historyBox">
-      <h2 class="section-title">Complete history & evolution of the Tiranga</h2>
-
-      <p class="lead">From early nationalist banners to the official tricolour — the flag’s story is the story of India’s freedom movement and nation building.</p>
-
-      <div class="timeline" aria-hidden="false">
-        <div class="event">
-          <div class="dot" aria-hidden="true"></div>
-          <div>
-            <div class="meta">Early flags (1906–1920s)</div>
-            <div class="muted">Regional nationalist groups used tricolours and banners — for example a Calcutta flag of 1906 with green, yellow and red strips. These flags were symbolic expressions of local identity and anti-colonial sentiment.</div>
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="dot"></div>
-          <div>
-            <div class="meta">The Swaraj Flag & the Charkha (1921)</div>
-            <div class="muted">Mahatma Gandhi proposed a flag featuring the spinning wheel (charkha) symbolizing self-reliance and Swadeshi. The 1921 design (by Pingali Venkayya's work and Congress deliberations) had saffron, white and green with a charkha in the middle.</div>
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="dot"></div>
-          <div>
-            <div class="meta">Final design (1947)</div>
-            <div class="muted">After independence the Constituent Assembly chose a version that replaced Gandhi’s charkha with the Ashoka Chakra — representing the wheel of law — to emphasize India’s constitutional republic identity. <strong>Adopted: 22 July 1947</strong>.</div>
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="dot"></div>
-          <div>
-            <div class="meta">Why the Ashoka Chakra?</div>
-            <div class="muted">The Ashoka Chakra is taken from the Lion Capital of Ashoka (Sarnath). It represents dharma (law/righteousness) and progress; the 24 spokes are said to represent 24 virtues or the 24 hours of the day — a constant movement of progress.</div>
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="dot"></div>
-          <div>
-            <div class="meta">Color meanings (officially interpreted)</div>
-            <div class="muted"><strong>Saffron:</strong> courage and sacrifice. <strong>White:</strong> truth, peace and light. <strong>Green:</strong> faith, fertility and life.</div>
-          </div>
-        </div>
-
-        <div class="event">
-          <div class="dot"></div>
-          <div>
-            <div class="meta">Flag code & legal rules</div>
-            <div class="muted">Use of the flag is governed by the Flag Code of India (2002) and later amendments: proper display, handling, and prohibitions against misuse. The code standardizes flag proportions (3:2), colour shades and how the flag must be shown on vehicles, buildings and clothing.</div>
-          </div>
-        </div>
-      </div>
-
-      <hr style="margin:16px 0; border:none; height:1px; background:#eef2f6">
-
-      <h3 style="margin-top:8px">Designer & important dates</h3>
-      <p class="muted">
-        <strong>Designer:</strong> Pingali Venkayya (an Indian freedom fighter and agriculturist who proposed designs during the Congress sessions).<br>
-        <strong>Adopted by Constituent Assembly:</strong> 22 July 1947.<br>
-        <strong>First time flown officially:</strong> On 15 August 1947 (Independence Day) it was ceremonially hoisted across India as the national flag of the independent nation.<br>
-      </p>
-
-      <p class="muted"><strong>Note:</strong> Many earlier proposals and regional flags influenced the final look. Choosing the Ashoka Chakra emphasized continuity with India’s ancient heritage and the secular, constitutional identity of modern India.</p>
-    </div>
-  </section>
-
-  <!-- MORE ABOUT FLAG -->
-  <section id="about" class="container">
-    <div class="grid two fade-up">
-      <div class="history">
-        <h2 class="section-title">Official specifications & colors</h2>
-        <p class="muted">The Bureau of Indian Standards (BIS) provides detailed guidelines for the exact shade, dimensions, and manufacture of the national flag. Key points:</p>
-        <ul class="muted" style="margin-left:18px">
-          <li>Proportions: <strong>Length : Height = 3 : 2</strong></li>
-          <li>Ashoka Chakra diameter is 3/4th of the height of the white band.</li>
-          <li>Shades: specific dye/shade references are part of manufacturing standards (to ensure consistent saffron, white and green tones).</li>
-          <li>Flag etiquette: it must not touch the ground, be used as a drapery, or be used for commercial purposes. Respectful disposal (by burning) is prescribed for damaged flags.</li>
+    <section class="section about-flag">
+        <h2>The Story of the Tiranga</h2>
+        <img src="images/tiranga.jpg" alt="Indian National Flag" class="responsive-img">
+        <p>
+            The Indian National Flag, known as the Tiranga, was designed by Pingali Venkayya.
+            It was adopted on July 22, 1947, just before India's independence.  
+            The flag consists of three horizontal stripes:
+        </p>
+        <ul>
+            <li><b>Saffron</b> – Symbolizes courage and sacrifice.</li>
+            <li><b>White</b> – Represents truth, peace, and purity.</li>
+            <li><b>Green</b> – Stands for prosperity and growth.</li>
         </ul>
-      </div>
+        <p>
+            The Ashoka Chakra in the center is navy blue with 24 spokes, symbolizing eternal progress and righteousness.  
+            The Tiranga is a symbol of national pride, unity, and freedom.
+        </p>
+    </section>
 
-      <aside class="history" aria-label="Flag imagery and notes">
-        <h2 class="section-title">Symbolic connections</h2>
-        <p class="muted">Beyond the literal color meanings, the Tiranga is associated with India’s political freedom movement, the Gandhian ideals of self-rule and simplicity (charkha era), and the constitutional values embedded after independence.</p>
-        <p class="muted"><strong>Interesting:</strong> The change from charkha to Ashoka Chakra shows a shift from a movement symbol (Gandhi’s Swadeshi) to a national emblem rooted in ancient Indian statecraft and law.</p>
-      </aside>
-    </div>
-  </section>
+    <section class="section history">
+        <h2>History of the Flag</h2>
+        <p>
+            The journey to our present flag went through several designs since the early 1900s.
+            The first national flag was hoisted in 1906 in Calcutta. Later, various versions emerged
+            during the freedom struggle, including one with the spinning wheel representing self-reliance.
+            The final design was officially adopted on July 22, 1947, and has remained unchanged since.
+        </p>
+    </section>
 
-  <!-- REFORMERS -->
-  <section id="reformers" class="container">
-    <h2 class="section-title">Social Reformers — their life & contribution</h2>
-    <p class="lead">Short biographies and key achievements of reformers who reshaped India’s social fabric.</p>
+    <section class="section reformers">
+        <h2>Great Social Reformers of India</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="images/mahatma_gandhi.jpg" alt="Mahatma Gandhi">
+                <h3>Mahatma Gandhi</h3>
+                <p>Leader of India's non-violent independence movement and a pioneer of truth and peace.</p>
+            </div>
+            <div class="card">
+                <img src="images/b_r_ambedkar.jpg" alt="B. R. Ambedkar">
+                <h3>B. R. Ambedkar</h3>
+                <p>Architect of the Indian Constitution and a champion for social justice and equality.</p>
+            </div>
+            <div class="card">
+                <img src="images/savitribai_phule.jpg" alt="Savitribai Phule">
+                <h3>Savitribai Phule</h3>
+                <p>India’s first female teacher and a crusader for women's education and empowerment.</p>
+            </div>
+            <div class="card">
+                <img src="images/swami_vivekananda.jpg" alt="Swami Vivekananda">
+                <h3>Swami Vivekananda</h3>
+                <p>Spiritual leader who inspired youth towards self-reliance and patriotism.</p>
+            </div>
+        </div>
+    </section>
 
-    <div class="reformers-grid">
-      <!-- Gandhi -->
-      <article class="card fade-up">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mahatma-Gandhi%2C_studio%2C_1931.jpg" alt="Mahatma Gandhi">
-        <h3>Mahatma Gandhi (1869–1948)</h3>
-        <p>Leader of India’s independence movement, proponent of Satyagraha (non-violent resistance). Major campaigns: Non-Cooperation (1920), Civil Disobedience (1930) and Quit India (1942). Advocated communal harmony, rural uplift and simple living.</p>
-      </article>
+    <footer>
+        <p>Made with ❤️ by Yellow House | Proudly celebrating India's heritage</p>
+    </footer>
 
-      <!-- Ambedkar -->
-      <article class="card fade-up">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/B.R.Ambedkar_in_1950.jpg" alt="B. R. Ambedkar">
-        <h3>Dr. B. R. Ambedkar (1891–1956)</h3>
-        <p>Principal architect of the Indian Constitution. Campaigned against caste discrimination, worked for political representation and social uplift of Dalits; promoted education, legal rights and reforms like the Hindu Code Bills.</p>
-      </article>
-
-      <!-- Savitribai Phule -->
-      <article class="card fade-up">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Savitribai_Phule.jpg/330px-Savitribai_Phule.jpg" alt="Savitribai Phule">
-        <h3>Savitribai Phule (1831–1897)</h3>
-        <p>India’s first woman teacher and pioneer of girls’ education. Along with Jyotirao Phule she opened schools for girls and lower-caste children; worked against untouchability and child marriage.</p>
-      </article>
-
-      <!-- Jyotirao Phule -->
-      <article class="card fade-up">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Jyotirao_Phule.jpg" alt="Jyotirao Phule">
-        <h3>Jyotirao Phule (1827–1890)</h3>
-        <p>Social activist and thinker; promoted education for marginalized communities, established schools and a home for widows, and criticized caste-based oppression and feudal structures.</p>
-      </article>
-
-      <!-- Raja Ram Mohan Roy -->
-      <article class="card fade-up">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8b/Raja_Ram_Mohan_Roy.jpg" alt="Raja Ram Mohan Roy">
-        <h3>Raja Ram Mohan Roy (1772–1833)</h3>
-        <p>Pioneer of social and religious reform in 19th-century India — campaigned against Sati, supported widow remarriage, modern education and rationalism. Founded the Brahmo Samaj.</p>
-      </article>
-
-      <!-- Vivekananda -->
-      <article class="card fade-up">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Swami_Vivekananda_in_1893.jpg/330px-Swami_Vivekananda_in_1893.jpg" alt="Swami Vivekananda">
-        <h3>Swami Vivekananda (1863–1902)</h3>
-        <p>Philosopher and teacher who popularized Vedanta and Yoga worldwide; inspired youth to social service, education and national pride. Instrumental in the revival of Indian spiritual thought.</p>
-      </article>
-
-    </div>
-  </section>
-
-  <!-- GALLERY -->
-  <section id="gallery" class="container">
-    <h2 class="section-title">Gallery</h2>
-    <p class="lead">Click any image to enlarge.</p>
-
-    <div class="gallery">
-      <div class="thumb card" data-full="https://upload.wikimedia.org/wikipedia/commons/1/17/Flag_of_India.svg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Flag_of_India.svg/600px-Flag_of_India.svg.png" alt="Tiranga small">
-        <div class="caption">National Flag (Tiranga)</div>
-      </div>
-
-      <div class="thumb card" data-full="https://upload.wikimedia.org/wikipedia/commons/0/04/Mahatma-Gandhi%2C_studio%2C_1931.jpg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Mahatma-Gandhi%2C_studio%2C_1931.jpg/600px-Mahatma-Gandhi%2C_studio%2C_1931.jpg" alt="Gandhi small">
-        <div class="caption">Mahatma Gandhi</div>
-      </div>
-
-      <div class="thumb card" data-full="https://upload.wikimedia.org/wikipedia/commons/9/99/B.R.Ambedkar_in_1950.jpg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/B.R.Ambedkar_in_1950.jpg/600px-B.R.Ambedkar_in_1950.jpg" alt="Ambedkar small">
-        <div class="caption">Dr. B. R. Ambedkar</div>
-      </div>
-
-      <div class="thumb card" data-full="https://upload.wikimedia.org/wikipedia/commons/5/5e/Savitribai_Phule.jpg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Savitribai_Phule.jpg/600px-Savitribai_Phule.jpg" alt="Savitribai small">
-        <div class="caption">Savitribai Phule</div>
-      </div>
-
-      <div class="thumb card" data-full="https://upload.wikimedia.org/wikipedia/commons/8/8b/Raja_Ram_Mohan_Roy.jpg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Raja_Ram_Mohan_Roy.jpg/600px-Raja_Ram_Mohan_Roy.jpg" alt="Raja Ram Mohan Roy small">
-        <div class="caption">Raja Ram Mohan Roy</div>
-      </div>
-
-      <div class="thumb card" data-full="https://upload.wikimedia.org/wikipedia/commons/3/36/Swami_Vivekananda_in_1893.jpg">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Swami_Vivekananda_in_1893.jpg/600px-Swami_Vivekananda_in_1893.jpg" alt="Vivekananda small">
-        <div class="caption">Swami Vivekananda</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modal for images -->
-  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal-content" role="document">
-      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
-      <img id="modalImg" src="" alt="Enlarged image">
-      <div class="modal-body" id="modalCaption"></div>
-    </div>
-  </div>
-
-  <!-- Contact / Footer -->
-  <section id="contact" class="container">
-    <div class="history fade-up">
-      <h2 class="section-title">About & Credits</h2>
-      <p class="muted">This page was created by Yellow House for school board decoration and education. Images are used from Wikimedia Commons & public domain sources for educational purposes. Feel free to contact your site admin for edits or to add more reformers and references.</p>
-      <p class="muted" style="margin-top:8px">Suggestions & updates — <strong>Pranav Khade</strong> (site maintainer)</p>
-    </div>
-  </section>
-
-  <footer>
-    <p>© 2025 Yellow House • Built for education • Hosted on GitHub Pages</p>
-    <p>Made by Pranav Khade</p>
-  </footer>
-
-  <script>
-    // small utility: fade-in elements when in view
-    const faders = document.querySelectorAll('.fade-up');
-    const appearOptions = { threshold: 0.15 };
-    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll){
-      entries.forEach(entry => {
-        if(!entry.isIntersecting) return;
-        entry.target.classList.add('in');
-        appearOnScroll.unobserve(entry.target);
-      });
-    }, appearOptions);
-    faders.forEach(f => appearOnScroll.observe(f));
-
-    // Simple gallery modal
-    const modal = document.getElementById('modal');
-    const modalImg = document.getElementById('modalImg');
-    const modalCaption = document.getElementById('modalCaption');
-    const modalClose = document.getElementById('modalClose');
-
-    document.querySelectorAll('.thumb').forEach(t => {
-      t.addEventListener('click', () => {
-        const src = t.getAttribute('data-full');
-        const cap = t.querySelector('.caption')?.innerText || '';
-        modalImg.src = src;
-        modalCaption.innerText = cap;
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden','false');
-      });
-    });
-
-    modalClose.addEventListener('click', closeModal);
-    modal.addEventListener('click', (e)=>{ if(e.target === modal) closeModal(); });
-    function closeModal(){
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-      modalImg.src='';
-    }
-
-    // keyboard support for Esc
-    document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeModal(); });
-
-    // Accessibility: focus trap (simple)
-    modal.addEventListener('keydown', function(e){
-      if(e.key === 'Tab') e.preventDefault();
-    });
-
-    // Optional: mobile: show nav when tapping brand
-    document.querySelector('.brand').addEventListener('click', ()=> window.scrollTo({top:0, behavior:'smooth'}));
-  </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
+
+    
