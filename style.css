@@ -95,3 +95,15 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
+footer {
+    background-color: #222;
+    color: #f8f8f8;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    border-top: 3px solid #ff9933; /* Saffron stripe */
+}
+
+footer p {
+    margin: 5px 0;
+}
