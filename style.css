@@ -1,0 +1,97 @@
+/* ---------- Global Styles ---------- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* ---------- Header ---------- */
+header {
+    background: linear-gradient(90deg, #ff9933, white, #138808);
+    color: #000;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.8rem;
+    font-weight: bold;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* ---------- Navigation ---------- */
+nav {
+    background: #222;
+    display: flex;
+    justify-content: center;
+}
+
+nav a {
+    color: white;
+    padding: 1rem;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+nav a:hover {
+    background: #ff9933;
+}
+
+/* ---------- Container ---------- */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem 0;
+}
+
+/* ---------- Sections ---------- */
+section {
+    background: white;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: #ff6600;
+    margin-bottom: 1rem;
+}
+
+/* ---------- Images ---------- */
+img {
+    max-width: 100%;
+    border-radius: 8px;
+    display: block;
+    margin: auto;
+}
+
+/* ---------- Footer ---------- */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+/* ---------- Scroll Animation ---------- */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
